@@ -1,0 +1,11 @@
+{
+    "sqltools.connections": [
+        {
+            "driver": "SQLite",
+            "name": "sql",
+            "group": "base de dados da escola",
+            "database": "${workspaceFolder:SQL}/sql.db"
+        }
+    ],
+    "liveServer.settings.multiRootWorkspaceName": "SQL"
+}

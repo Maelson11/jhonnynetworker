@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Consulta ao Banco de Dados</title>
+  </head>
+  <body>
+    <h1>Consulta ao Banco de Dados</h1>
+    <input type="text" id="consulta" placeholder="Digite a consulta SQL" />
+    <button onclick="realizarConsulta()">Executar</button>
+    <div id="resultados"></div>
+
+    <script>
+      function realizarConsulta() {
+        const consulta = document.getElementById("consulta").value;
+        fetch('/consultar', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ consulta: consulta })
+        })
+        .then(response => response.json())
+        .then(data => {
+          const resultadosDiv = document.getElementById('resultados');
+          resultadosDiv.innerHTML = "<h2>Resultado da Consulta:</h2>";
+          resultadosDiv.innerHTML += "<pre>" + JSON.stringify(data, null, 2) + "</pre>";
+        })
+        .catch(error => {
+          console.error('Erro:', error);
+        });
+      }
+    </script>
+  </body>
+</html>
